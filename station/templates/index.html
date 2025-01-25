@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berry Weather</title>
+</head>
+<body>
+    <h1>Berry Weather</h1>
+    <h2>Sensor Readings</h2>
+    <ul>
+        {% for name, temperature in data.temperatures.items() %}
+            <li>{{ name }}: {{ temperature }}°F</li>
+        {% endfor %}
+    </ul>
+    <h2>WiFi Signal Strength</h2>
+    <p>{{ data.wifi_signal }} dB</p>
+</body>
+</html>
