@@ -14,7 +14,7 @@ app = Flask(__name__)
 # Shared state
 data = {
     "temperatures": {},
-    "wifi_signal": None,
+    "wifi_info": {},
     "system_stats": {},
     "bme680": {"temperature": None, "humidity": None, "pressure": None, "gas_resistance": None},
 }
