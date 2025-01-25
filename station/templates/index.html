@@ -15,10 +15,10 @@
     </ul>
     <h2>BME680 Sensor Readings</h2>
     <ul>
-        <li>Temperature: {{ data.bme680.temperature }}°F</li>
-        <li>Humidity: {{ data.bme680.humidity }}%</li>
-        <li>Pressure: {{ data.bme680.pressure }} hPa</li>
-        <li>Gas Resistance: {{ data.bme680.gas_resistance }} Ω</li>
+        <li>Temperature: {{ data.bme680.temperature if data.bme680.temperature is not none else "N/A" }}°F</li>
+        <li>Humidity: {{ data.bme680.humidity if data.bme680.humidity is not none else "N/A" }}%</li>
+        <li>Pressure: {{ data.bme680.pressure if data.bme680.pressure is not none else "N/A" }} hPa</li>
+        <li>Gas Resistance: {{ data.bme680.gas_resistance if data.bme680.gas_resistance is not none else "N/A" }} Ω</li>
     </ul>
     <h2>WiFi Information</h2>
     <ul>

@@ -40,8 +40,8 @@ def read_sensors():
                 print(f"[LOG] Temperature readings updated: {data['temperatures']}")
 
                 # Update WiFi info
-                data["wifi_signal"] = get_wifi_info()
-                print(f"[LOG] WiFi info updated: {data['wifi_signal']}")
+                data["wifi_info"] = get_wifi_info()
+                print(f"[LOG] WiFi info updated: {data['wifi_info']}")
 
                 # Update system stats
                 data["system_stats"] = get_system_stats()
