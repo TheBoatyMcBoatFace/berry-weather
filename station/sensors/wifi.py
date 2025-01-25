@@ -2,10 +2,20 @@
 import subprocess
 
 def get_wifi_info():
+    """
+    Get WiFi information, including SSID, bitrate, frequency, and signal strength.
+    Returns:
+        dict: WiFi stats or default values if parsing fails.
+    """
+    info = {
+        "ssid": None,
+        "bitrate": None,
+        "frequency": None,
+        "signal_db": None
+    }
     try:
         # Execute the iwconfig command
         result = subprocess.check_output(["iwconfig", "wlan0"]).decode()
-        info = {}
 
         # Parse the output line by line
         for line in result.splitlines():
@@ -17,12 +27,8 @@ def get_wifi_info():
                 info["frequency"] = line.split("Frequency:")[-1].split()[0]
             if "Signal level" in line:
                 signal_part = line.split("Signal level=")[-1].split()[0]
-                info["signal_db"] = int(signal_part) if signal_part.isdigit() else None
-
-        return info
-    except subprocess.CalledProcessError as e:
-        print(f"Error fetching WiFi info: {e}")
-        return {}
+                info["signal_db"] = int(signal_part) if signal_part.lstrip("-").isdigit() else None
     except Exception as e:
-        print(f"Unexpected error: {e}")
-        return {}
+        print(f"Error fetching WiFi info: {e}")
+
+    return info

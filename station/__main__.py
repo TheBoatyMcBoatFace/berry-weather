@@ -31,12 +31,15 @@ def read_sensors():
                     sensor["name"]: round(raw_temperatures.get(sensor["id"], None), 2)
                     for sensor in config["sensors"]["temperature"]
                 }
+                print(f"[LOG] Temperature readings updated: {data['temperatures']}")
 
-                # Update WiFi info
+                # Update WiFi signal strength
                 data["wifi_info"] = get_wifi_info()
+                print(f"[LOG] WiFi info updated: {data['wifi_info']}")
 
                 # Update system stats
                 data["system_stats"] = get_system_stats()
+                print(f"[LOG] System stats updated: {data['system_stats']}")
 
         except Exception as e:
             print(f"Error reading sensors: {e}")
