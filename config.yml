@@ -1,5 +1,4 @@
 # config.yml
-
 one_wire:
   pin: GPIO4
 
@@ -10,4 +9,8 @@ sensors:
     - name: "Soil Temperature"
       id: "28-3ce1e3801e12"
   wifi:
-    update_interval: 60
+    update_interval: 60  # in seconds
+  system:
+    update_interval: 60  # in seconds
+webserver:
+  port: 6969
