@@ -12,7 +12,12 @@ import sys
 app = Flask(__name__)
 
 # Shared state
-data = {"temperatures": {}, "wifi_info": {}, "system_stats": {}}
+data = {
+    "temperatures": {},
+    "wifi_signal": None,
+    "system_stats": {},
+    "bme680": {"temperature": None, "humidity": None, "pressure": None, "gas_resistance": None},
+}
 config = None
 data_lock = Lock()  # Ensure thread-safe access to shared state
 
@@ -35,8 +40,8 @@ def read_sensors():
                 print(f"[LOG] Temperature readings updated: {data['temperatures']}")
 
                 # Update WiFi info
-                data["wifi_info"] = get_wifi_info()
-                print(f"[LOG] WiFi info updated: {data['wifi_info']}")
+                data["wifi_signal"] = get_wifi_info()
+                print(f"[LOG] WiFi info updated: {data['wifi_signal']}")
 
                 # Update system stats
                 data["system_stats"] = get_system_stats()
@@ -46,14 +51,14 @@ def read_sensors():
                 if bme680_sensor:
                     data["bme680"] = read_bme680_data(bme680_sensor)
                     print(f"[LOG] BME680 readings updated: {data['bme680']}")
+                else:
+                    data["bme680"] = {"temperature": None, "humidity": None, "pressure": None, "gas_resistance": None}
 
         except Exception as e:
             print(f"Error reading sensors: {e}")
 
         # Wait for the configured update interval
         time.sleep(config["sensors"].get("wifi", {}).get("update_interval", 60))
-
-
 @app.route("/")
 def index():
     """Display sensor data on a webpage."""
