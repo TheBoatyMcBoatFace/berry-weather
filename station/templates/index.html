@@ -9,10 +9,11 @@
     <h1>Berry Weather</h1>
     <h2>Sensor Readings</h2>
     <ul>
-        {% for name, temp in data.temperature.items() %}
+      {% for name, temp in data.temperatures.items() %}
         <li>{{ name }}: {{ temp|round(2) }}°F</li>
-        {% endfor %}
+      {% endfor %}
     </ul>
+
     <h2>WiFi Information</h2>
     <ul>
         <li>Signal Strength: {{ data.wifi.signal_strength }} dB</li>

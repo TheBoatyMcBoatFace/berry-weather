@@ -7,4 +7,5 @@ __all__ = [
     "setup_temperature_sensors",
     "get_temperatures",
     "get_wifi_signal_strength",
+    "get_system_stats",
 ]

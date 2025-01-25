@@ -1,20 +1,28 @@
 # station/sensors/wifi.py
-import os
 import subprocess
 
-def get_wifi_signal_strength():
-    """
-    Get WiFi signal strength in dB.
-
-    Returns:
-        int: Signal strength in dB or None if an error occurs.
-    """
+def get_wifi_info():
     try:
+        # Execute the iwconfig command
         result = subprocess.check_output(["iwconfig", "wlan0"]).decode()
-        signal_line = [line for line in result.splitlines() if "Signal level" in line]
-        if signal_line:
-            signal_db = int(signal_line[0].split("Signal level=")[-1].split()[0])
-            return signal_db
+        info = {}
+
+        # Parse the output line by line
+        for line in result.splitlines():
+            if "ESSID" in line:
+                info["ssid"] = line.split("ESSID:")[-1].strip().replace('"', "")
+            if "Bit Rate" in line:
+                info["bitrate"] = line.split("Bit Rate=")[-1].split()[0]
+            if "Frequency" in line:
+                info["frequency"] = line.split("Frequency:")[-1].split()[0]
+            if "Signal level" in line:
+                signal_part = line.split("Signal level=")[-1].split()[0]
+                info["signal_db"] = int(signal_part) if signal_part.isdigit() else None
+
+        return info
+    except subprocess.CalledProcessError as e:
+        print(f"Error fetching WiFi info: {e}")
+        return {}
     except Exception as e:
-        print(f"Error reading WiFi signal strength: {e}")
-        return None
+        print(f"Unexpected error: {e}")
+        return {}
