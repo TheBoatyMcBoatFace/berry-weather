@@ -6,6 +6,6 @@ from .system import get_system_stats
 __all__ = [
     "setup_temperature_sensors",
     "get_temperatures",
-    "get_wifi_signal_strength",
+    "get_wifi_info",
     "get_system_stats",
 ]
