@@ -15,7 +15,7 @@ dependencies = [
 package-mode = false
 
 [tool.poetry.scripts]
-brewer = "station.__main__:main"
+station = "station.__main__:main"
 
 [tool.poetry]
 packages = [
