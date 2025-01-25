@@ -9,20 +9,22 @@
     <h1>Berry Weather</h1>
     <h2>Sensor Readings</h2>
     <ul>
-      {% for name, temp in data.temperatures.items() %}
-        <li>{{ name }}: {{ temp|round(2) }}°F</li>
-      {% endfor %}
+        {% for name, temp in data.temperatures.items() %}
+        <li>{{ name }}: {{ temp }}°F</li>
+        {% endfor %}
     </ul>
-
     <h2>WiFi Information</h2>
     <ul>
-        <li>Signal Strength: {{ data.wifi.signal_strength }} dB</li>
+        <li>SSID: {{ data.wifi_info.ssid }}</li>
+        <li>Bitrate: {{ data.wifi_info.bitrate }} Mbps</li>
+        <li>Frequency: {{ data.wifi_info.frequency }} GHz</li>
+        <li>Signal Strength: {{ data.wifi_info.signal_db }} dB</li>
     </ul>
-    <h2>System Performance</h2>
+    <h2>System Stats</h2>
     <ul>
-        <li>CPU Usage: {{ data.system.cpu_usage }}%</li>
-        <li>Memory Usage: {{ data.system.memory_usage }}%</li>
-        <li>Disk Usage: {{ data.system.disk_usage }}%</li>
+        <li>CPU Usage: {{ data.system_stats.cpu_usage }}%</li>
+        <li>Memory Usage: {{ data.system_stats.memory_usage }}%</li>
+        <li>Disk Usage: {{ data.system_stats.disk_usage }}%</li>
     </ul>
 </body>
 </html>
