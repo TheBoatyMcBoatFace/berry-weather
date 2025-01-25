@@ -3,7 +3,7 @@ from flask import Flask, jsonify, render_template
 from threading import Thread, Lock
 import time
 from .config import load_config
-from .sensors import setup_temperature_sensors, get_temperatures, get_wifi_info, get_system_stats
+from .sensors import *
 from .gpio import setup_gpio
 import RPi.GPIO as GPIO
 import signal
@@ -12,7 +12,7 @@ import sys
 app = Flask(__name__)
 
 # Shared state
-data = {"temperatures": {}, "wifi_signal": None, "system_stats": {}}
+data = {"temperatures": {}, "wifi_info": {}, "system_stats": {}}
 config = None
 data_lock = Lock()  # Ensure thread-safe access to shared state
 
@@ -32,8 +32,8 @@ def read_sensors():
                     for sensor in config["sensors"]["temperature"]
                 }
 
-                # Update WiFi signal strength
-                data["wifi_signal"] = get_wifi_signal_strength()
+                # Update WiFi info
+                data["wifi_info"] = get_wifi_info()
 
                 # Update system stats
                 data["system_stats"] = get_system_stats()
