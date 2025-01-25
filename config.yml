@@ -6,9 +6,8 @@ one_wire:
 sensors:
   temperature:
     - name: "Air Temperature"
-      id: "0xa33ce1e3801e1228"
+      id: "28-3ce1e380151f"
     - name: "Soil Temperature"
-      id: "0x993ce1e380151f28"
+      id: "28-3ce1e3801e12"
   wifi:
     update_interval: 60
-
