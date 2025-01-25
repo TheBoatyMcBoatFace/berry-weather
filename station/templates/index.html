@@ -13,6 +13,13 @@
         <li>{{ name }}: {{ temp }}°F</li>
         {% endfor %}
     </ul>
+    <h2>BME680 Sensor Readings</h2>
+    <ul>
+        <li>Temperature: {{ data.bme680.temperature }}°F</li>
+        <li>Humidity: {{ data.bme680.humidity }}%</li>
+        <li>Pressure: {{ data.bme680.pressure }} hPa</li>
+        <li>Gas Resistance: {{ data.bme680.gas_resistance }} Ω</li>
+    </ul>
     <h2>WiFi Information</h2>
     <ul>
         <li>SSID: {{ data.wifi_info.ssid }}</li>
