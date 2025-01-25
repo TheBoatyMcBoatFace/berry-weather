@@ -3,7 +3,7 @@ from flask import Flask, jsonify, render_template
 from threading import Thread, Lock
 import time
 from .config import load_config
-from .sensors import setup_temperature_sensors, get_temperatures, get_wifi_signal_strength, get_system_stats
+from .sensors import setup_temperature_sensors, get_temperatures, get_wifi_info, get_system_stats
 from .gpio import setup_gpio
 import RPi.GPIO as GPIO
 import signal
