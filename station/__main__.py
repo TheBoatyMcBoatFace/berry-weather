@@ -1,7 +1,7 @@
 # station/__main__.py
 from .config import load_config
 from .sensors import setup_temperature_sensors, get_temperatures, get_wifi_signal_strength
-from .setup import setup_gpio
+from .gpio import setup_gpio
 import RPi.GPIO as GPIO
 
 def main():
