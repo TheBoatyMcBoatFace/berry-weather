@@ -1,0 +1,31 @@
+[project]
+name = "berry-weather"
+version = "0.1.0"
+description = "RaspberryPi Weather Station"
+authors = [
+    {name = "Bentley Hensel", email = "bentleyhensel@gmail.com"}
+]
+license = {text = "AGPL-3.0"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "flask >=3.1.0,<4.0.0",
+    "pyyaml >=6.0.2,<7.0.0"
+]
+package-mode = false
+
+[tool.poetry.scripts]
+brewer = "station.__main__:main"
+
+[tool.poetry]
+packages = [
+    { include = "station" }
+]
+
+# Optional dependencies for different environments
+[optional-dependencies]
+rpi = ["rpi-gpio >=0.7.1,<0.8.0"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

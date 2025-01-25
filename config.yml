@@ -1,0 +1,14 @@
+# config.yml
+
+one_wire:
+  pin: GPIO4
+
+sensors:
+  temperature:
+    - name: "Air Temperature"
+      id: "0xa33ce1e3801e1228"
+    - name: "Soil Temperature"
+      id: "0x993ce1e380151f28"
+  wifi:
+    update_interval: 60
+
